@@ -8,7 +8,7 @@ using Uplift.DataAccess.Data.Repository.IRepository;
 
 namespace Uplift.DataAccess.Data.Repository
 {
-    class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         protected readonly DbContext Context;
         internal DbSet<T> dbSet;
