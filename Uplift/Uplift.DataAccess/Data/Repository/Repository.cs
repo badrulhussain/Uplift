@@ -33,22 +33,24 @@ namespace Uplift.DataAccess.Data.Repository
         {
             IQueryable<T> query = dbSet;
 
-            if(filter != null)
+            if (filter != null)
             {
                 query = query.Where(filter);
             }
-
-            foreach(var includePropertie in includeProperties.Split(new char[] {',' }, StringSplitOptions.RemoveEmptyEntries))
+            //include properties will be comma seperated
+            if (includeProperties != null)
             {
-                query = query.Include(includePropertie);
+                foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProperty);
+                }
             }
 
-            if(orderBy != null)
+            if (orderBy != null)
             {
                 return orderBy(query).ToList();
             }
-
-            return query.ToList(); ;
+            return query.ToList();
         }
 
         public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, string includeProperties = null)
