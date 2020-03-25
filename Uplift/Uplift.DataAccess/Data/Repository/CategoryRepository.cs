@@ -31,7 +31,7 @@ namespace Uplift.DataAccess.Data.Repository
             var objFRomDb = _db.Category.FirstOrDefault(s => s.Id == category.Id);
 
             objFRomDb.Name = category.Name;
-            objFRomDb.DisplyOrder = category.DisplyOrder;
+            objFRomDb.DisplayOrder = category.DisplayOrder;
 
             _db.SaveChanges();
         }
