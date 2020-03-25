@@ -69,7 +69,7 @@ namespace Uplift.Areas.Admin.Controllers
             return Json(new { data = _unitOfWork.Category.GetAll() });
         }
 
-        [HttpGet]
+        [HttpDelete]
         public IActionResult Delete(int Id)
         {
             var objFromDb = _unitOfWork.Category.Get(Id);
