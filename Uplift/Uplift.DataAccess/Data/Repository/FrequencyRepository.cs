@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Uplift.DataAccess.Data.Repository.IRepository;
 using Uplift.Models;
@@ -18,12 +19,22 @@ namespace Uplift.DataAccess.Data.Repository
 
         public IEnumerable<SelectListItem> GetFrequencyListForDropDown()
         {
-            throw new NotImplementedException();
+            return _db.Frequency.Select(i => new SelectListItem()
+            {
+                Text = i.Id.ToString(),
+                Value = i.Name
+            });
+
         }
 
-        public void UpdateFrequency(Frequency frequencyR)
+        public void UpdateFrequency(Frequency frequency)
         {
-            throw new NotImplementedException();
+            var objFromDb = _db.Frequency.FirstOrDefault(s => s.Id == frequency.Id);
+
+            objFromDb.Name = frequency.Name;
+            objFromDb.FrequencyCount = frequency.FrequencyCount;
+
+            _db.SaveChanges();
         }
     }
 }
