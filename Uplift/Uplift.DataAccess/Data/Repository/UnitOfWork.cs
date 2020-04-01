@@ -13,6 +13,7 @@ namespace Uplift.DataAccess.Data.Repository
         {
             _db = db;
             Category = new CategoryRepository(db);
+            FrequencyRepository = new FrequencyRepository(db);
         }
         public ICategoryRepository Category { get; private set; }
         public IFrequencyRepository FrequencyRepository { get; private set; }
