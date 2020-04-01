@@ -22,3 +22,9 @@ https://sweetalert.js.org/
 Jquery:
 -------
 https://cdnjs.com/libraries/jquery.serializeJSON
+
+
+DB
+-----
+add-migration <the name/description of the migration>
+update-database

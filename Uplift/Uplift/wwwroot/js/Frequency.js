@@ -1,11 +1,11 @@
-﻿var dataTabel;
+﻿var dataTable;
 
 $(document).ready(function () {
     loadDataTable();
 });
 
 function loadDataTable() {
-    dataTabel = $('#tblData').DataTabel({
+    dataTable = $('#tblData').DataTable({
         "ajax": {
             "url": "/admin/frequency/GetAll",
             "type": "GET",
@@ -26,11 +26,11 @@ function loadDataTable() {
                                     <i class='far fa-trash-alt'></i> Delete
                                 </a>
                             </div>`;
-                }, width :"30%"
+                }, "width" :"30%"
             }
         ],
         "language": {
             "emptyTable": "No records found."
-        }, "width":"100%",
+        }, "width":"100%"
     });
 }
