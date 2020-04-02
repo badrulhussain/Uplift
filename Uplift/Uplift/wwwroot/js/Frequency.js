@@ -16,7 +16,7 @@ function loadDataTable() {
             { "data": "frequencyCount", "width": "20%" },
             {
                 "data": "id",
-                "render": function () {
+                "render": function (data) {
                     return `<div class="text-center">
                                 <a href="/admin/frequency/Upsert/${data}" class='btn btn-success text-white' style='cursor:pointer; width:100px;'>
                                     <i class='far fa-edit'></i> Edit
