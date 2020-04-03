@@ -70,6 +70,21 @@ namespace Uplift.Areas.Admin.Controllers
         {
             return Json(new { data = _unitOfWord.FrequencyRepository.GetAll() });
         }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            var objFromDb = _unitOfWord.FrequencyRepository.Get(id);
+            if(objFromDb == null)
+            {
+                return Json(new { success = false, message = "Error while deleting." });
+            }
+
+            _unitOfWord.FrequencyRepository.Remove(objFromDb);
+            _unitOfWord.Save();
+
+            return Json(new { success = true, message = "Delete successful." } );
+        }
         #endregion
     }
 }
