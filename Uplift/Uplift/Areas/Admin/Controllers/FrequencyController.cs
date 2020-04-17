@@ -31,7 +31,7 @@ namespace Uplift.Areas.Admin.Controllers
                 return View(Frequency);
             }
 
-            Frequency = _unitOfWord.FrequencyRepository.Get(id.GetValueOrDefault());
+            Frequency = _unitOfWord.Frequency.Get(id.GetValueOrDefault());
             if(Frequency == null)
             {
                 return NotFound();
@@ -48,11 +48,11 @@ namespace Uplift.Areas.Admin.Controllers
             {
                 if (frequency.Id == 0)
                 {
-                    _unitOfWord.FrequencyRepository.Add(frequency);
+                    _unitOfWord.Frequency.Add(frequency);
                 }
                 else
                 {
-                    _unitOfWord.FrequencyRepository.UpdateFrequency(frequency);
+                    _unitOfWord.Frequency.UpdateFrequency(frequency);
                 }
 
                 _unitOfWord.Save();
@@ -68,19 +68,19 @@ namespace Uplift.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Json(new { data = _unitOfWord.FrequencyRepository.GetAll() });
+            return Json(new { data = _unitOfWord.Frequency.GetAll() });
         }
 
         [HttpDelete]
         public IActionResult Delete(int id)
         {
-            var objFromDb = _unitOfWord.FrequencyRepository.Get(id);
+            var objFromDb = _unitOfWord.Frequency.Get(id);
             if(objFromDb == null)
             {
                 return Json(new { success = false, message = "Error while deleting." });
             }
 
-            _unitOfWord.FrequencyRepository.Remove(objFromDb);
+            _unitOfWord.Frequency.Remove(objFromDb);
             _unitOfWord.Save();
 
             return Json(new { success = true, message = "Delete successful." } );

@@ -31,13 +31,13 @@ namespace Uplift.Areas.Admin.Controllers
             var ServVM = new ServiceVM()
             {
                 CategoryList = _unitOfWork.Category.GetCategoryListForDropDown(),
-                FrequencyList = _unitOfWork.FrequencyRepository.GetFrequencyListForDropDown(),
+                FrequencyList = _unitOfWork.Frequency.GetFrequencyListForDropDown(),
                 Service = new Service()
             };
 
             if(id != null)
             {
-                ServVM.Service = _unitOfWork.ServiceRepository.Get(id.GetValueOrDefault());
+                ServVM.Service = _unitOfWork.Service.Get(id.GetValueOrDefault());
             }
 
             return View(ServVM);
@@ -46,7 +46,7 @@ namespace Uplift.Areas.Admin.Controllers
         #region API
         public IActionResult GetAll()
         {
-            return Json(new { data = _unitOfWork.ServiceRepository.GetAll(includeProperties: "Category,Frequency")});
+            return Json(new { data = _unitOfWork.Service.GetAll(includeProperties: "Category,Frequency")});
         }
         #endregion
     }
