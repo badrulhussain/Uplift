@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Uplift.Models.ViewModels
 {
-    public class ServiceMV
+    public class ServiceVM
     {
         public Service Service { get; set; }
         public IEnumerable<SelectListItem> CategoryList { get; set; }
