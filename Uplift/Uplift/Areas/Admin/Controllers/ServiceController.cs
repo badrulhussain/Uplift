@@ -10,6 +10,7 @@ using Uplift.Models.ViewModels;
 
 namespace Uplift.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class ServiceController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
