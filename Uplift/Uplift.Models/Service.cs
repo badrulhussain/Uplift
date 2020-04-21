@@ -23,7 +23,7 @@ namespace Uplift.Models
 
         [DataType(DataType.ImageUrl)]
         [Display(Name="Image")]
-        public int ImageUrl { get; set; }
+        public string ImageUrl { get; set; }
 
         [Required]
         public int CategoryId { get; set; }
