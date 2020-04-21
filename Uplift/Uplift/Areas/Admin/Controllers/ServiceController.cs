@@ -72,7 +72,42 @@ namespace Uplift.Areas.Admin.Controllers
 
                     _unitOfWork.Service.Add(ServVM.Service);
                 }
-            
+                else
+                {
+                    var serviceFromDB = _unitOfWork.Service.Get(ServVM.Service.Id);
+                    if (serviceFromDB.Id > 0)
+                    {
+                        string fileName = Guid.NewGuid().ToString();
+                        var uploads = Path.Combine(webRootPath, @"images\services");
+                        var extention_new = Path.GetExtension(files[0].FileName);
+
+                        var imagePath = Path.Combine(webRootPath, serviceFromDB.ImageUrl.Trim('\\'));
+                        if(System.IO.File.Exists(imagePath))
+                        {
+                            System.IO.File.Delete(imagePath);
+                        }
+
+                        using (var fileStream = new FileStream(Path.Combine(uploads + fileName + extention_new), FileMode.Create))
+                        {
+                            files[0].CopyTo(fileStream);
+                        }
+                        ServVM.Service.ImageUrl = @"\images\services\" + fileName + extention_new;
+                    }
+                    else
+                    {
+                        ServVM.Service.ImageUrl = serviceFromDB.ImageUrl;
+                    }
+
+                    _unitOfWork.Service.UpdateService(ServVM.Service);
+                }
+
+                _unitOfWork.Save();
+
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return View(ServVM);
             }
         }
 
