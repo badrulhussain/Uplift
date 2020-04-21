@@ -50,7 +50,7 @@ namespace Uplift.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upser()
+        public IActionResult Upsert()
         {
             if (ModelState.IsValid)
             {
