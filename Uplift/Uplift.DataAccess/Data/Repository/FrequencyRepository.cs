@@ -21,8 +21,8 @@ namespace Uplift.DataAccess.Data.Repository
         {
             return _db.Frequency.Select(i => new SelectListItem()
             {
-                Text = i.Id.ToString(),
-                Value = i.Name
+                Text = i.Name,
+                Value = i.Id.ToString()
             });
 
         }
