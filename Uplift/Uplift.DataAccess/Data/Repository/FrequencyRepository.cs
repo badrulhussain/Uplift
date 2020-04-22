@@ -27,7 +27,7 @@ namespace Uplift.DataAccess.Data.Repository
 
         }
 
-        public void UpdateFrequency(Frequency frequency)
+        public void Update(Frequency frequency)
         {
             var objFromDb = _db.Frequency.FirstOrDefault(s => s.Id == frequency.Id);
 

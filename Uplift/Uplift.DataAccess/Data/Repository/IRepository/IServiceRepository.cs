@@ -7,6 +7,6 @@ namespace Uplift.DataAccess.Data.Repository.IRepository
 {
     public interface IServiceRepository: IRepository<Service>
     {
-        void UpdateService(Service service);
+        void Update(Service service);
     }
 }

@@ -62,13 +62,13 @@ namespace Uplift.Areas.Admin.Controllers
                 {
                     string fileName = Guid.NewGuid().ToString();
                     var uploads = Path.Combine(webRootPath, @"images\services");
-                    var extention = Path.GetExtension(files[0].FileName);
+                    var extension  = Path.GetExtension(files[0].FileName);
 
-                    using (var filesStreams = new FileStream(Path.Combine(uploads + fileName + extention), FileMode.Create))
+                    using (var filesStreams = new FileStream(Path.Combine(uploads, fileName + extension ), FileMode.Create))
                     {
                         files[0].CopyTo(filesStreams);
                     }
-                    ServVM.Service.ImageUrl = @"\images\services\" + fileName + extention;
+                    ServVM.Service.ImageUrl = @"\images\services\" + fileName + extension ;
 
                     _unitOfWork.Service.Add(ServVM.Service);
                 }
@@ -79,7 +79,7 @@ namespace Uplift.Areas.Admin.Controllers
                     {
                         string fileName = Guid.NewGuid().ToString();
                         var uploads = Path.Combine(webRootPath, @"images\services");
-                        var extention_new = Path.GetExtension(files[0].FileName);
+                        var extension_new = Path.GetExtension(files[0].FileName);
 
                         var imagePath = Path.Combine(webRootPath, serviceFromDB.ImageUrl.Trim('\\'));
                         if(System.IO.File.Exists(imagePath))
@@ -87,18 +87,18 @@ namespace Uplift.Areas.Admin.Controllers
                             System.IO.File.Delete(imagePath);
                         }
 
-                        using (var fileStream = new FileStream(Path.Combine(uploads + fileName + extention_new), FileMode.Create))
+                        using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension_new), FileMode.Create))
                         {
                             files[0].CopyTo(fileStream);
                         }
-                        ServVM.Service.ImageUrl = @"\images\services\" + fileName + extention_new;
+                        ServVM.Service.ImageUrl = @"\images\services\" + fileName + extension_new;
                     }
                     else
                     {
                         ServVM.Service.ImageUrl = serviceFromDB.ImageUrl;
                     }
 
-                    _unitOfWork.Service.UpdateService(ServVM.Service);
+                    _unitOfWork.Service.Update(ServVM.Service);
                 }
 
                 _unitOfWork.Save();

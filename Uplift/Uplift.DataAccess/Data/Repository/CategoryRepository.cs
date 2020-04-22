@@ -26,7 +26,7 @@ namespace Uplift.DataAccess.Data.Repository
             });
         }
 
-        public void UpdateCategory(Category category)
+        public void Update(Category category)
         {
             var objFRomDb = _db.Category.FirstOrDefault(s => s.Id == category.Id);
 

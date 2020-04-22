@@ -52,7 +52,7 @@ namespace Uplift.Areas.Admin.Controllers
                 }
                 else
                 {
-                    _unitOfWord.Frequency.UpdateFrequency(frequency);
+                    _unitOfWord.Frequency.Update(frequency);
                 }
 
                 _unitOfWord.Save();

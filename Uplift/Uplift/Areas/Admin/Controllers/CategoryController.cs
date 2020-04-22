@@ -51,7 +51,7 @@ namespace Uplift.Areas.Admin.Controllers
                 }
                 else
                 {
-                    _unitOfWork.Category.UpdateCategory(category);
+                    _unitOfWork.Category.Update(category);
                 }
 
                 _unitOfWork.Save();

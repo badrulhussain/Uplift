@@ -8,7 +8,7 @@ namespace Uplift.DataAccess.Data.Repository.IRepository
 {
     public interface IFrequencyRepository : IRepository<Frequency>
     {
-        void UpdateFrequency(Frequency frequency);
+        void Update(Frequency frequency);
         IEnumerable<SelectListItem> GetFrequencyListForDropDown();
     }
 }

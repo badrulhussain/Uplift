@@ -16,7 +16,7 @@ namespace Uplift.DataAccess.Data.Repository
             _db = db;
         }
 
-        public void UpdateService(Service service)
+        public void Update(Service service)
         {
             var objFromDb = _db.Service.FirstOrDefault(s => s.Id == service.Id);
 
