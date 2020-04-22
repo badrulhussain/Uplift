@@ -114,6 +114,29 @@ namespace Uplift.Areas.Admin.Controllers
             }
         }
 
+        [HttpDelete]
+        public IActionResult Delete(int Id)
+        {
+            var serviceFromDB = _unitOfWork.Service.Get(Id);
+
+            string webRootPath = _hostEnvironment.WebRootPath;
+            var imagePath = Path.Combine(webRootPath, serviceFromDB.ImageUrl.Trim('\\'));
+            if (System.IO.File.Exists(imagePath))
+            {
+                System.IO.File.Delete(imagePath);
+            }
+
+            if(serviceFromDB == null)
+            {
+                return Json(new { success = false, message = "Error while deleting." });
+            }
+
+            _unitOfWork.Service.Remove(serviceFromDB);
+            _unitOfWork.Save();
+
+            return Json(new { success = true, message = "Deleted Successfully."});
+        }
+
         #region API
         public IActionResult GetAll()
         {
