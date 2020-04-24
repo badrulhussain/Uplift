@@ -48,7 +48,7 @@ namespace Uplift.Controllers
             if(string.IsNullOrEmpty(HttpContext.Session.GetString(SD.SessionCart)))
             {
                 sessionList.Add(serviceId);
-                HttpContext.Session.SetObject(SD.SessionCart,serviceId);
+                HttpContext.Session.SetObject(SD.SessionCart, sessionList);
             }
             else
             {
@@ -56,7 +56,7 @@ namespace Uplift.Controllers
                 if (!sessionList.Contains(serviceId))
                 {
                     sessionList.Add(serviceId);
-                    HttpContext.Session.SetObject(SD.SessionCart, serviceId);
+                    HttpContext.Session.SetObject(SD.SessionCart, sessionList);
                 }
             }
 
