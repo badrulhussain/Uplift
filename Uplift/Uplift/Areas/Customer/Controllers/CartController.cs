@@ -12,6 +12,7 @@ using Uplift.Utility;
 
 namespace Uplift.Areas.Customer.Controllers
 {
+    [Area("Customer")]
     public class CartController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
