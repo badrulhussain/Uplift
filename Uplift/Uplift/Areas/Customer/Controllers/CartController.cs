@@ -42,5 +42,15 @@ namespace Uplift.Areas.Customer.Controllers
             }
             return View(CartVM);
         }
+
+        public IActionResult Remove(int serviceId)
+        {
+            var sessionList = HttpContext.Session.GetObject<List<int>>(SD.SessionCart);
+            sessionList.Remove(serviceId);
+
+            HttpContext.Session.SetObject(SD.SessionCart, sessionList);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
