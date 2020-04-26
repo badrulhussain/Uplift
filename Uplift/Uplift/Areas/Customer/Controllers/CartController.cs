@@ -30,6 +30,7 @@ namespace Uplift.Areas.Customer.Controllers
             };
 
         }
+
         public IActionResult Index()
         {
             if (HttpContext.Session.GetObject<List<int>>(SD.SessionCart) != null)
@@ -51,6 +52,19 @@ namespace Uplift.Areas.Customer.Controllers
             HttpContext.Session.SetObject(SD.SessionCart, sessionList);
 
             return RedirectToAction(nameof(Index));
+        }
+        
+        public IActionResult Summary()
+        {
+            if (HttpContext.Session.GetObject<List<int>>(SD.SessionCart) != null)
+            {
+                var sessionList = HttpContext.Session.GetObject<List<int>>(SD.SessionCart);
+                foreach (var serviceId in sessionList)
+                {
+                    CartVM.ServiceList.Add(_unitOfWork.Service.GetFirstOrDefault(m => m.Id == serviceId, includeProperties: "Frequency,Category"));
+                }
+            }
+            return View(CartVM);
         }
     }
 }
