@@ -77,6 +77,7 @@ namespace Uplift.Areas.Customer.Controllers
             if (HttpContext.Session.GetObject<List<int>>(SD.SessionCart) != null)
             {
                 var sessionList = HttpContext.Session.GetObject<List<int>>(SD.SessionCart);
+                CartVM.ServiceList = new List<Service>();
                 foreach (var serviceId in sessionList)
                 {
                     CartVM.ServiceList.Add(_unitOfWork.Service.Get(serviceId));
@@ -90,7 +91,7 @@ namespace Uplift.Areas.Customer.Controllers
             {
                 CartVM.OrderHeader.OrderDate = DateTime.Now;
                 CartVM.OrderHeader.Status = SD.StatusSubmitted;
-                CartVM.OrderHeader.ServiceCount = CartVM.ServiceList.Count();
+                CartVM.OrderHeader.ServiceCount = CartVM.ServiceList.Count;
                 _unitOfWork.OrderHeader.Add(CartVM.OrderHeader);
                 _unitOfWork.Save();
 
@@ -111,6 +112,11 @@ namespace Uplift.Areas.Customer.Controllers
 
             HttpContext.Session.SetObject(SD.SessionCart, new List<int>());
             return RedirectToAction("OrderConfirmation", "Cart", new { id = CartVM.OrderHeader.Id });
+        }
+
+        public IActionResult OrderConfirmation(int Id)
+        {
+            return View(Id);
         }
     }
 }
