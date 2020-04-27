@@ -18,7 +18,7 @@ namespace Uplift.Areas.Customer.Controllers
         private readonly IUnitOfWork _unitOfWork;
 
         [BindProperty]
-        private CartViewModel CartVM { set; get; }
+        public CartViewModel CartVM { set; get; }
 
         public CartController(IUnitOfWork unitOfWork)
         {
