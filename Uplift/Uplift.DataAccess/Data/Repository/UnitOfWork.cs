@@ -17,12 +17,14 @@ namespace Uplift.DataAccess.Data.Repository
             Service = new ServiceRepository(db);
             OrderHeader = new OrderHeaderRepository(db);
             OrderDetails = new OrderDetailsRepository(db);
+            User = new UserRepository(db);
         }
         public ICategoryRepository Category { get; private set; }
         public IFrequencyRepository Frequency { get; private set; }
         public IServiceRepository Service { get; private set; }
         public IOrderHeaderRepository OrderHeader { get; private set; }
         public IOrderDetailsRepository OrderDetails { get; private set; }
+        public IUserRepository User { get; private set; }
         public void Dispose()
         {
             _db.Dispose();
