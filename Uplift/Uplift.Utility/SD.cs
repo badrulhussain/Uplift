@@ -10,9 +10,7 @@ namespace Uplift.Utility
         public const string StatusSubmitted = "Submitted";
         public const string StatusApproved = "Approved";
         public const string StatusRejcted = "Rejcted";
-    }
-    public static class UserRole
-    {
+
         public const string Admin = "Admin";
         public const string Manager = "Manager";
     }
