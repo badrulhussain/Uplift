@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Uplift.Extensions
 {
-    public static class SessionExtentions
+    public static class SessionExtensions
     {
         public static void SetObject(this ISession session, string key, object value)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Uplift.DataAccess.Data.Repository.IRepository;
 
-namespace Uplift.Areas.Admin
+namespace Uplift.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class UserController : Controller
