@@ -23,5 +23,29 @@ namespace Uplift.Areas.Admin.Controllers
 
             return View(_unitOfWork.User.GetAll(u => u.Id != claims.Value));
         }
+
+        public IActionResult Lock(string Id)
+        {
+            if(Id == null)
+            {
+                return NotFound();
+            }
+
+            _unitOfWork.User.LockUser(Id);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult UnLock(string Id)
+        {
+            if (Id == null)
+            {
+                return NotFound();
+            }
+
+            _unitOfWork.User.UnLockUser(Id);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
