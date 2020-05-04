@@ -29,7 +29,7 @@ namespace Uplift.Areas.Admin.Controllers
             var OrderVM = new OrderViewModel()
             {
                 OrderHeader = _unitOfWork.OrderHeader.Get(Id),
-                OrderDetails = _unitOfWork.OrderDetails.GetAll(o => o.Id == Id)
+                OrderDetails = _unitOfWork.OrderDetails.GetAll(o => o.OrderHeaderId == Id)
             };
 
             return View(OrderVM);
