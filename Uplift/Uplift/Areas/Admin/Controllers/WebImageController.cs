@@ -21,10 +21,11 @@ namespace Uplift.Areas.Admin.Controllers
         {
             _db = db;
         }
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
+
+        public IActionResult Index()
+        {
+            return View();
+        }
 
         //public IActionResult Upsert(int? id)
         //{
