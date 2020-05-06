@@ -70,9 +70,6 @@ namespace Uplift.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            //return Json(new { data = _unitOfWork.Category.GetAll() });
-
-            // Using the storeprocedure call to get the values 
             return Json(new { data = _db.WebImages.ToList() });
         }
 
