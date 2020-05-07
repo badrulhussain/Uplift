@@ -35,13 +35,14 @@ namespace Uplift.Areas.Admin.Controllers
             {
 
             }
-
-            imageObject = _db.WebImages.SingleOrDefault(m => m.Id == id);
-            if (imageObject == null)
+            else
             {
-                return NotFound();
+                imageObject = _db.WebImages.SingleOrDefault(m => m.Id == id);
+                if (imageObject == null)
+                {
+                    return NotFound();
+                }
             }
-
             return View(imageObject);
         }
 
