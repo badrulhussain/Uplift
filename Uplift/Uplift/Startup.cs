@@ -16,6 +16,7 @@ using Uplift.DataAccess.Data.Repository.IRepository;
 using Uplift.DataAccess.Data.Repository;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Uplift.Utility;
+using Uplift.DataAccess.Data.Initializer;
 
 namespace Uplift
 {
@@ -61,10 +62,13 @@ namespace Uplift
             services.AddRazorPages();
 
             services.AddScoped<IUnitOfWork,UnitOfWork>();
+            services.AddScoped<IDbInitialiser, DbInitialiser>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, 
+            IWebHostEnvironment env,
+            IDbInitialiser dbInit)
         {
             if (env.IsDevelopment())
             {
@@ -77,10 +81,13 @@ namespace Uplift
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSession();
             app.UseRouting();
+
+            dbInit.Initialise();
 
             app.UseAuthentication();
             app.UseAuthorization();
